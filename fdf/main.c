@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 20:57:28 by mku               #+#    #+#             */
-/*   Updated: 2024/06/15 18:24:36 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/15 23:10:42 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,6 @@
 int	create_trgb(int trgb)
 {
 	return (trgb << 24 | trgb << 16 | trgb << 8);
-}
-
-int	key_input(int key, t_param *param, t_pos *pos)
-{
-	printf("a");
-	return (0);
 }
 
 void	set_mlx(t_param *param, t_data *data)
@@ -38,21 +32,18 @@ void	set_mlx(t_param *param, t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_param	param;
 	t_data	data;
 	t_map	map;
 
 	data.map = &map;
-	set_mlx(&param, &data);
-	//char *s1 = "./maps/test_maps/";
-	//argv[1] = ft_strjoin(s1,argv[1]);
-	//map_load(&map, argv[1]);
-	map_load(&map, "./maps/test_maps/42.fdf");
-	isometric(&map);
-	pos_scale(&map);
-	draw_line(&map, &data);
-	mlx_hook(param.win, 2, 1L << 0, &key_input, &param);
-	mlx_put_image_to_window(param.mlx_ptr, param.win, data.img, 0, 0);
-	mlx_loop(param.mlx_ptr);
+	set_mlx(&data.param, &data);
+	
+	char *s1 = "./maps/test_maps/";
+	argv[1] = ft_strjoin(s1,argv[1]);
+	map_load(&map, argv[1]);
+	draw(&map, &data);
+	mlx_key_hook(data.param.win,&key_press, &data);
+	
+	mlx_loop(data.param.mlx_ptr);
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 00:07:18 by mku               #+#    #+#             */
-/*   Updated: 2024/06/10 01:08:46 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/15 22:10:24 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	check_map_error(char* content)
+void	check_map_error(char *content)
 {
 	int	i;
 

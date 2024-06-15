@@ -6,12 +6,11 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 21:47:13 by mku               #+#    #+#             */
-/*   Updated: 2024/06/15 18:43:32 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/15 23:07:45 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <limits.h>
 
 void	check_map_size(char *content, t_map *map)
 {
@@ -38,46 +37,49 @@ void	check_map_size(char *content, t_map *map)
 	map->heigth = y;
 }
 
+void	zmaxmin(t_map *map, t_pos *pos, int z)
+{
+	if (z > map->max_z)
+		map->max_z = z;
+	else if (z < map->min_z)
+		map->min_z = z;
+	pos->z = z;
+}
+
+void	init_xyz(t_map *map, int i, char **content)
+{
+	int	z;
+
+	map->pos[i].x = ((i % map->width) - (map->width / 2)) \
+	* (WINDOW_X / SCALE / map->width);
+	map->pos[i].y = ((i / map->width) - (map->heigth / 2)) \
+	* (WINDOW_Y / SCALE / map->heigth);
+	z = check_content_value(content, &map->pos[i]);
+	zmaxmin(map, &(map->pos[i]), z);
+	map->copy_pos[i].x = ((i % map->width) - (map->width / 2)) \
+	* (WINDOW_X / SCALE / map->width);
+	map->copy_pos[i].y = ((i / map->width) - (map->heigth / 2)) \
+	* (WINDOW_Y / SCALE / map->heigth);
+	zmaxmin(map, &(map->copy_pos[i]), z);
+}
 
 void	pos_init(char *content, t_map *map)
 {
 	int		i;
-	int		z;
-	
+
 	i = 0;
 	map->map_size = map->heigth * map->width;
 	map->pos = (t_pos *)malloc(sizeof(t_pos) * map->map_size);
 	if (map->pos == NULL)
-		fdf_error("pos allocate error");
+		fdf_error("POS ALLOCATE ERROR");
+	map->copy_pos = (t_pos *)malloc(sizeof(t_pos) * map->map_size);
+	if (map->pos == NULL)
+		fdf_error("COPY POS ALLOCATE ERROR");
 	while (i < map->map_size)
 	{
 		while (*content == '\n' || *content == ' ')
 			content++;
-		map->pos[i].x = ((i % map->width) - (map->width / 2)) * (WINDOW_X / SCALE / map->width);
-		map->pos[i].y = ((i / map->width) - (map->heigth / 2)) * (WINDOW_Y / SCALE / map->heigth);
-		z = check_content_value(&content, &map->pos[i]);
-		if (z > map->max_z)
-			map->max_z = z;
-		else if (z < map->min_z)
-			map->min_z = z;
-		map->pos[i].z = z;
-		i++;
-	}
-}
-
-void	set_z_scale(t_map *map)
-{
-	int	i;
-	int	scale;
-
-	i = 0;
-	scale = map->map_size / (map->max_z - map->min_z);
-	while (i < map->map_size)
-	{
-		if (map->pos[i].z >= 0 && map->max_z > 30)
-			map->pos[i].z *= 30 / map->max_z;
-		else if (map->pos[i].z < 0 && map->min_z < -20)
-			map->pos[i].z *= -20 / map->min_z;
+		init_xyz(map, i, &content);
 		i++;
 	}
 }

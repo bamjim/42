@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:24:01 by mku               #+#    #+#             */
-/*   Updated: 2024/06/12 20:36:27 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/15 22:09:29 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	x_line(t_ham *ham, t_data *data, t_pos *start, t_pos *end)
 			ham->y += ham->yfactor;
 			ham->det += (2 * ham->height - 2 * ham->width);
 		}
-		my_mlx_pixel_put(data, ham->x, ham->y , start->color);
+		my_mlx_pixel_put(data, ham->x, ham->y, start->color);
 		ham->x += ham->xfactor;
 		i++;
 	}
@@ -59,7 +59,7 @@ void	x_line(t_ham *ham, t_data *data, t_pos *start, t_pos *end)
 
 void	y_line(t_ham *ham, t_data *data, t_pos *start, t_pos *end)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	ham->det2 = (2 * ham->width) - ham->height;

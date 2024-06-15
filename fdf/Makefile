@@ -10,12 +10,13 @@ HEADER		= ./fdf.h
 SRCS		=	main.c \
 			bresenham.c \
 			draw.c  \
+			scale.c\
 			map_load.c       \
 			map_read.c	\
 			utils.c		\
 			isometric.c	\
 			map_load_utils.c\
-			scale.c\
+			key.c\
 
 OBJS		= $(SRCS:.c=.o)
 
