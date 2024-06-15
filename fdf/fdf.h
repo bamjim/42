@@ -35,10 +35,8 @@ typedef struct s_map
 	int	width;
 	int	heigth;
 	int	map_size;
-	int	max_x;
-	int	min_x;
-	int	max_y;
-	int	min_y;
+	int	max_z;
+	int	min_z;
 }		t_map;
 
 typedef struct s_data

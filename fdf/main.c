@@ -6,22 +6,12 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 20:57:28 by mku               #+#    #+#             */
-/*   Updated: 2024/06/12 22:49:23 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/15 18:24:36 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <time.h>
 
-void sleep(int second)
-{
-	//초 단위(long)
-	clock_t ct;
-	//초 단위 지연 시간 계산
-	ct = clock();
-	//CLK_TCK : 1000 
-	while(ct + 1000 * second > clock());//5초간 지연
-}
 int	create_trgb(int trgb)
 {
 	return (trgb << 24 | trgb << 16 | trgb << 8);
