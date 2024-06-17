@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 18:00:27 by mku               #+#    #+#             */
-/*   Updated: 2024/06/15 23:08:03 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/17 22:14:17 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,12 @@ void	pos_scale(t_map *map)
 	while (i < map->map_size)
 	{
 		map->pos[i].x += (WINDOW_X / 2);
-		map->pos[i].y += (WINDOW_Y / 2);
-		map->copy_pos[i].x += (WINDOW_X / 2);
-		map->copy_pos[i].y += (WINDOW_Y / 2);
+		map->pos[i].y += (WINDOW_Y / 2.1);
 		i++;
 	}
 }
 
-void	set_z_scale(t_map *map)
+void	set_z_scale(t_map *map, t_data *data)
 {
 	int	i;
 	int	scale;
@@ -40,17 +38,29 @@ void	set_z_scale(t_map *map)
 	{	
 		while (i < map->map_size)
 		{
-			if ((WINDOW_Y / SCALE / map->heigth) * 0.3 > map->max_z)
+			if ((WINDOW_Y / 1.7 / map->heigth) * 0.3 > map->max_z)
 			{
-				map->pos[i].z *= ((WINDOW_Y / SCALE / map->heigth) * 0.3) / 2;
-				map->copy_pos[i].z *= ((WINDOW_Y / SCALE / map->heigth) * 0.3) / 2;
+				map->pos[i].z *= ((WINDOW_Y / data->scale / map->heigth) * 0.2) / 2;
+				map->copy_pos[i].z *= ((WINDOW_Y / data->scale / map->heigth) * 0.2) / 2;
 			}
 			else
 			{
-				map->pos[i].z *= (WINDOW_Y / SCALE / map->heigth) * 0.3;
-				map->copy_pos[i].z *= (WINDOW_Y / SCALE / map->heigth) * 0.3;
+				map->pos[i].z *= (WINDOW_Y / data->scale / map->heigth) * 0.2;
+				map->copy_pos[i].z *= (WINDOW_Y / data->scale / map->heigth) * 0.2;
 			}
 			i++;
 		}
+	}
+}
+
+void	scale(t_map *map, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->map_size)
+	{
+		init_xyz(map, i, data);
+		i++;
 	}
 }

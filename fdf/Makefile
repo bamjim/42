@@ -9,6 +9,7 @@ ARFLAGS		= crs
 HEADER		= ./fdf.h
 SRCS		=	main.c \
 			bresenham.c \
+			draw_utils.c\
 			draw.c  \
 			scale.c\
 			map_load.c       \

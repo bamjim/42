@@ -9,15 +9,17 @@
 # define READ_BUFFERSIZE 50000
 # define WINDOW_X 1920
 # define WINDOW_Y 1080
-# define SCALE 1.5
-# define COLOR_WHITE 0x00FF00
+# define COLOR_WHITE 0xFFFFFF
 //key
 # define KEY_PRESS		2
 # define KEY_ESC		65307
 # define KEY_A			97
 # define KEY_D			100
 # define KEY_Q			113
-
+# define KEY_W			119
+# define KEY_S			115
+# define KEY_E			101
+# define KEY_R			114
 typedef struct s_param
 {
 	void *mlx_ptr;
@@ -44,6 +46,9 @@ typedef struct s_map
 	int	map_size;
 	int	max_z;
 	int	min_z;
+	int	x_angle;
+	int	y_angle;
+	int	flag;
 }		t_map;
 
 typedef struct s_data
@@ -55,6 +60,7 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	float	scale;
 }		t_data;
 
 
@@ -82,10 +88,12 @@ char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
 //scale
 void	pos_scale(t_map *map);
-void	set_z_scale(t_map *map);
+void	set_z_scale(t_map *map, t_data *data);
+void	scale(t_map *map, t_data *data);
 //map_load.c
-void map_load(t_map *map, char *dir);
+void map_load(t_map *map, char *dir, t_data *data);
 void	check_map_size(char *content, t_map *map);
+void	init_xyz(t_map *map, int i, t_data *data);
 //map_load_utils.c
 int	check_content_value(char **nptr, t_pos *pos);
 //utils.c
@@ -97,11 +105,17 @@ void	fdf_error(char * msg);
 //isometric
 void isometric(t_map *map);
 //draw.c
+void	copy_draw(t_map *map,t_data *data);
 void	draw(t_map *map,t_data *data);
+void	resize_draw(t_map *map, t_data *data);
+//draw_utils.c
+void	init_copy_pos(t_map *map);
+void	*ft_memset(void *s, int c, size_t n);
 void draw_line(t_map *map, t_data *data);
 void draw_copy_line(t_map *map, t_data *data);
 //color.c
 void	get_color(t_pos *pos, char **content);
 //key
 int	key_press(int keycode, t_data *data);
+
 #endif

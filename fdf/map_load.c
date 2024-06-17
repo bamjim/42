@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 21:47:13 by mku               #+#    #+#             */
-/*   Updated: 2024/06/15 23:07:45 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/17 21:02:59 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,24 @@ void	zmaxmin(t_map *map, t_pos *pos, int z)
 	pos->z = z;
 }
 
-void	init_xyz(t_map *map, int i, char **content)
+void	init_xyz(t_map *map, int i, t_data *data)
 {
 	int	z;
 
 	map->pos[i].x = ((i % map->width) - (map->width / 2)) \
-	* (WINDOW_X / SCALE / map->width);
+	* (WINDOW_Y / data->scale / map->width);
 	map->pos[i].y = ((i / map->width) - (map->heigth / 2)) \
-	* (WINDOW_Y / SCALE / map->heigth);
-	z = check_content_value(content, &map->pos[i]);
-	zmaxmin(map, &(map->pos[i]), z);
+	* (WINDOW_Y / data->scale / map->width);
 	map->copy_pos[i].x = ((i % map->width) - (map->width / 2)) \
-	* (WINDOW_X / SCALE / map->width);
+	* (WINDOW_Y / data->scale / map->width);
 	map->copy_pos[i].y = ((i / map->width) - (map->heigth / 2)) \
-	* (WINDOW_Y / SCALE / map->heigth);
-	zmaxmin(map, &(map->copy_pos[i]), z);
+	* (WINDOW_Y / data->scale / map->width);
 }
 
-void	pos_init(char *content, t_map *map)
+void	pos_init(char *content, t_map *map, t_data *data)
 {
 	int		i;
-
+	int		z;
 	i = 0;
 	map->map_size = map->heigth * map->width;
 	map->pos = (t_pos *)malloc(sizeof(t_pos) * map->map_size);
@@ -79,12 +76,15 @@ void	pos_init(char *content, t_map *map)
 	{
 		while (*content == '\n' || *content == ' ')
 			content++;
-		init_xyz(map, i, &content);
+		init_xyz(map, i, data);
+		z = check_content_value(&content, &map->pos[i]);
+		zmaxmin(map, &(map->pos[i]), z);
+		zmaxmin(map, &(map->copy_pos[i]), z);
 		i++;
 	}
 }
 
-void	map_load(t_map *map, char *dir)
+void	map_load(t_map *map, char *dir, t_data *data)
 {
 	char	*content;
 
@@ -96,6 +96,6 @@ void	map_load(t_map *map, char *dir)
 	if (content == NULL)
 		fdf_error("READ MAP ERROR");
 	check_map_size(content, map);
-	pos_init(content, map);
-	set_z_scale(map);
+	pos_init(content, map ,data);
+	set_z_scale(map, data);
 }

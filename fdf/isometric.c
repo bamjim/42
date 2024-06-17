@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 01:23:57 by mku               #+#    #+#             */
-/*   Updated: 2024/06/15 22:56:53 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/17 22:28:35 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 void	isometric(t_map *map)
 {
 	double	pi;
-	int		x_angle;
-	int		y_angle;
 	int		i;
 
 	i = 0;
 	pi = 3.1415926;
-	x_angle = 35;
-	y_angle = 40;
 	while (i < map->map_size)
 	{
-		map->pos[i].x = (map->pos[i].x * cos(x_angle * pi / 180)) - \
-		(map->pos[i].y * sin(x_angle * pi / 180));
-		map->pos[i].y = (map->pos[i].x * sin(y_angle * pi / 180)) + \
-		(map->pos[i].y * sin(y_angle * pi / 180) - map->pos[i].z);
+		map->pos[i].x = (map->copy_pos[i].x * cos((map->x_angle * pi) / 180)) - \
+		(map->copy_pos[i].y * sin((map->x_angle * pi) / 180));
+		if (map->y_angle < 90 || map->y_angle > - 90)
+			map->pos[i].y = (map->copy_pos[i].x * sin((map->y_angle * pi) / 180)) + \
+			(map->copy_pos[i].y * sin((map->y_angle * pi) / 180) - map->pos[i].z);
+		else
+			map->pos[i].y = (map->copy_pos[i].x * sin((map->y_angle * pi) / 180)) + \
+			(map->copy_pos[i].y * sin((map->y_angle * pi) / 180) + map->pos[i].z);
 		i++;
 	}
 }
