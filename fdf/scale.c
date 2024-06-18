@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 18:00:27 by mku               #+#    #+#             */
-/*   Updated: 2024/06/17 22:14:17 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/18 19:50:15 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	pos_scale(t_map *map)
 	i = 0;
 	while (i < map->map_size)
 	{
-		map->pos[i].x += (WINDOW_X / 2);
-		map->pos[i].y += (WINDOW_Y / 2.1);
+		map->pos[i].x += (WINDOW_X / 2) + map->move_x;
+		map->pos[i].y += (WINDOW_Y / 2.1) + map->move_y;
 		i++;
 	}
 }

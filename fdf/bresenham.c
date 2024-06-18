@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:24:01 by mku               #+#    #+#             */
-/*   Updated: 2024/06/17 21:34:17 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/18 21:47:54 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
+
 	if (x < 0 || y < 0 || x + 1 > WINDOW_X || y + 1 > WINDOW_Y)
 		return ;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));

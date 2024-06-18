@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 20:57:28 by mku               #+#    #+#             */
-/*   Updated: 2024/06/17 22:28:09 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/18 20:25:10 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	create_trgb(int trgb)
 	return (trgb << 24 | trgb << 16 | trgb << 8);
 }
 
-void	set_mlx(t_param *param, t_data *data)
+void	init(t_param *param, t_data *data)
 {
 	param->width = 1920;
 	param->height = 1080;
@@ -32,6 +32,8 @@ void	set_mlx(t_param *param, t_data *data)
 	data->map->y_angle = 35;
 	data->map->flag = 1;
 	data->scale = 1.5f;
+	data->map->move_x = 0;
+	data->map->move_y = 0;
 }
 
 int	main(int argc, char **argv)
@@ -40,7 +42,7 @@ int	main(int argc, char **argv)
 	t_map	map;
 
 	data.map = &map;
-	set_mlx(&data.param, &data);
+	init(&data.param, &data);
 	char *s1 = "./maps/test_maps/";
 	argv[1] = ft_strjoin(s1,argv[1]);
 	map_load(&map, argv[1], &data);
