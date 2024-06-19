@@ -1,7 +1,7 @@
 NAME		= fdf.a
 FDF		= c.a
 CC		= cc
-CFLAG		=	-Wall -Werror -Wall -lm
+CFLAG		=	-g -Wall -Werror -Wall -lm -fsanitize=address
 MLX_FLAG		=	-Lminilibx-linux -lmlx -lXext -lX11
 RM		= rm -f
 AR		= ar
@@ -18,6 +18,7 @@ SRCS		=	main.c \
 			isometric.c	\
 			map_load_utils.c\
 			key.c\
+			color.c\
 
 OBJS		= $(SRCS:.c=.o)
 

@@ -6,15 +6,15 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 20:57:28 by mku               #+#    #+#             */
-/*   Updated: 2024/06/18 20:25:10 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/19 21:27:05 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	create_trgb(int trgb)
+int	create_trgb(int t, int r, int g, int b)
 {
-	return (trgb << 24 | trgb << 16 | trgb << 8);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
 void	init(t_param *param, t_data *data)
@@ -43,8 +43,9 @@ int	main(int argc, char **argv)
 
 	data.map = &map;
 	init(&data.param, &data);
-	char *s1 = "./maps/test_maps/";
-	argv[1] = ft_strjoin(s1,argv[1]);
+	if (argc != 2)
+		fdf_error("WRONG ARGUMENT");
+	mlx_string_put(data.param.mlx_ptr, data.param.win, 30, 30 , 0xFFFFFF, "abcd");
 	map_load(&map, argv[1], &data);
 	mlx_key_hook(data.param.win, &key_press, &data);
 	mlx_loop(data.param.mlx_ptr);

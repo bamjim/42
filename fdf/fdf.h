@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:06:58 by mku               #+#    #+#             */
-/*   Updated: 2024/06/18 20:45:49 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/19 21:05:29 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	*ft_memset(void *s, int c, size_t n);
 void	draw_line(t_map *map, t_data *data);
 void	draw_copy_line(t_map *map, t_data *data);
 //color.c
-void	get_color(t_pos *pos, char **content);
+int		gradiant(int color1, int color2, float slope);
 //key
 int		key_press(int keycode, t_data *data);
 

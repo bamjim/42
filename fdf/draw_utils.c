@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 20:51:41 by mku               #+#    #+#             */
-/*   Updated: 2024/06/17 21:42:15 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/19 21:05:06 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_copy_pos(t_map *map)
 	int	i;
 
 	i = 0;
-	while(i < map->map_size)
+	while (i < map->map_size)
 	{
 		map->pos[i].x = map->copy_pos[i].x;
 		map->pos[i].y = map->copy_pos[i].y;
@@ -54,9 +54,4 @@ void	draw_line(t_map *map, t_data *data)
 			bresenham(&map->pos[i], &map->pos[i + map->width], data);
 		i++;
 	}
-}
-
-void	linear()
-{
-	
 }

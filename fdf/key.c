@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 20:57:10 by mku               #+#    #+#             */
-/*   Updated: 2024/06/18 20:47:28 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/19 21:24:07 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void	move_key(int keycode, t_data *data)
 	{
 		data->map->move_x = 0;
 		data->map->move_y = 0;
+		data->map->x_angle = 30;
+		data->map->y_angle = 35;
 	}
 }
 

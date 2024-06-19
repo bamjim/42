@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 21:47:13 by mku               #+#    #+#             */
-/*   Updated: 2024/06/18 20:25:39 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/19 21:09:01 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	pos_init(char *content, t_map *map, t_data *data)
 {
 	int		i;
 	int		z;
-	
+
 	i = 0;
 	map->map_size = map->heigth * map->width;
 	map->pos = (t_pos *)malloc(sizeof(t_pos) * map->map_size);

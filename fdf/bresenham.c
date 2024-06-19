@@ -6,13 +6,13 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:24:01 by mku               #+#    #+#             */
-/*   Updated: 2024/06/18 21:47:54 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/19 21:04:05 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -40,12 +40,14 @@ void	hamham(t_ham *ham, t_pos *start, t_pos *end)
 
 void	x_line(t_ham *ham, t_data *data, t_pos *start, t_pos *end)
 {
-	int	i;
+	int		i;
+	float	slope;
 
 	i = 0;
 	ham->det = (2 * ham->height) - ham->width;
 	while (i < ham->width)
 	{
+		slope = (float)i / ham->width;
 		if (ham->det < 0)
 			ham->det += 2 * ham->height;
 		else
@@ -53,7 +55,11 @@ void	x_line(t_ham *ham, t_data *data, t_pos *start, t_pos *end)
 			ham->y += ham->yfactor;
 			ham->det += (2 * ham->height - 2 * ham->width);
 		}
-		my_mlx_pixel_put(data, ham->x, ham->y, start->color);
+		if (start->color == end->color)
+			pixel_put(data, ham->x, ham->y, start->color);
+		else
+			pixel_put(data, ham->x, ham->y, \
+			gradiant(start->color, end->color, slope));
 		ham->x += ham->xfactor;
 		i++;
 	}
@@ -61,12 +67,14 @@ void	x_line(t_ham *ham, t_data *data, t_pos *start, t_pos *end)
 
 void	y_line(t_ham *ham, t_data *data, t_pos *start, t_pos *end)
 {
-	int	i;
+	int		i;
+	float	slope;
 
 	i = 0;
 	ham->det2 = (2 * ham->width) - ham->height;
 	while (i < ham->height)
 	{
+		slope = (float)i / ham->height;
 		if (ham->det2 < 0)
 			ham->det2 += 2 * ham->width;
 		else
@@ -74,7 +82,11 @@ void	y_line(t_ham *ham, t_data *data, t_pos *start, t_pos *end)
 			ham->x += ham->xfactor;
 			ham->det2 += (2 * ham->width - 2 * ham->height);
 		}
-		my_mlx_pixel_put(data, ham->x, ham->y, start->color);
+		if (start->color == end->color)
+			pixel_put(data, ham->x, ham->y, start->color);
+		else
+			pixel_put(data, ham->x, ham->y, \
+			gradiant(start->color, end->color, slope));
 		ham->y += ham->yfactor;
 		i++;
 	}
