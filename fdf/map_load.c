@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 21:47:13 by mku               #+#    #+#             */
-/*   Updated: 2024/06/19 21:09:01 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/22 18:47:25 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void	zmaxmin(t_map *map, t_pos *pos, int z)
 
 void	init_xyz(t_map *map, int i, t_data *data)
 {
-	int	z;
-
 	map->pos[i].x = ((i % map->width) - (map->width / 2)) \
 	* (WINDOW_Y / data->scale / map->width);
 	map->pos[i].y = ((i / map->width) - (map->heigth / 2)) \

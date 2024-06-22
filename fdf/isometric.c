@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 01:23:57 by mku               #+#    #+#             */
-/*   Updated: 2024/06/19 14:43:58 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/23 00:15:33 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,8 @@ void	isometric(t_map *map)
 	{
 		map->pos[i].x = (map->copy_pos[i].x * cos(xa)) - \
 		(map->copy_pos[i].y * sin(xa));
-		if (ya < 90 || ya > -90)
-			map->pos[i].y = (map->copy_pos[i].x * sin(ya)) + \
-			(map->copy_pos[i].y * sin(ya) - map->pos[i].z);
-		else
-			map->pos[i].y = (map->copy_pos[i].x * sin(ya)) + \
-			(map->copy_pos[i].y * sin(ya) + map->pos[i].z);
+		map->pos[i].y = (map->copy_pos[i].x * sin(ya)) + \
+		(map->copy_pos[i].y * sin(ya) - map->pos[i].z);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 20:57:28 by mku               #+#    #+#             */
-/*   Updated: 2024/06/19 21:27:05 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/23 00:26:23 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,15 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 	t_map	map;
+	int		length;
 
 	data.map = &map;
 	init(&data.param, &data);
 	if (argc != 2)
 		fdf_error("WRONG ARGUMENT");
-	mlx_string_put(data.param.mlx_ptr, data.param.win, 30, 30 , 0xFFFFFF, "abcd");
+	length = ft_strlen(argv[1]) - 4;
+	if (ft_strncmp(&argv[1][length], ".fdf", 4))
+		fdf_error("NOT .fdf FILE");
 	map_load(&map, argv[1], &data);
 	mlx_key_hook(data.param.win, &key_press, &data);
 	mlx_loop(data.param.mlx_ptr);

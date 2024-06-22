@@ -1,41 +1,38 @@
-NAME		= fdf.a
-FDF		= c.a
+NAME		= fdf
 CC		= cc
-CFLAG		=	-g -Wall -Werror -Wall -lm -fsanitize=address
-MLX_FLAG		=	-Lminilibx-linux -lmlx -lXext -lX11
-RM		= rm -f
-AR		= ar
-ARFLAGS		= crs
+RM		= -rm f
+CFLAG		=	-g -Wall -Werror -Wall -fsanitize=address
+MLX_FLAG		=	-Lminilibx-linux -lmlx -lXext -lX11 -lm
 HEADER		= ./fdf.h
-SRCS		=	main.c \
+
+SRCS		=	draw.c  \
+			key.c\
+			main.c \
 			bresenham.c \
 			draw_utils.c\
-			draw.c  \
 			scale.c\
 			map_load.c       \
 			map_read.c	\
 			utils.c		\
 			isometric.c	\
 			map_load_utils.c\
-			key.c\
 			color.c\
 
 OBJS		= $(SRCS:.c=.o)
 
 all : $(NAME)
 
+$(NAME) : $(OBJS)
+	@make -C ./minilibx-linux
+	$(CC) $(CFLAG) -o $@ $^ $(MLX_FLAG)
+
 clean :
-	$(RM) $(RMFLAG) $(OBJS) $(FDF)
+	@make clean -C ./minilibx-linux
+	$(RM) $(OBJS)
 
 fclean : clean
-	$(RM) $(RMFLAG) $(NAME)
+	$(RM) $(NAME)
 
 re : fclean all
-
-$(NAME) : $(FDF)
-	$(CC) $(CFLAG) $^ $(MLX_FLAG)
-
-$(FDF) : $(OBJS) $(HEADER)
-	$(AR) $(ARFLAGS) $@ $^
 
 .PHONY : all clean fclean re

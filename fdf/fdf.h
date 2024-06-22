@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:06:58 by mku               #+#    #+#             */
-/*   Updated: 2024/06/19 21:05:29 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/23 00:20:46 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FDF_H
 
 # include "minilibx-linux/mlx.h"
-# include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
 
