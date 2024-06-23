@@ -1,24 +1,28 @@
-Name 	= 	push_swap
+NAME 	= 	push_swap
 CC		= 	cc
 CFLAG	= 	-Wextra -Werror -Wall
-RM		=	-rm f
+RM		=	-rm
+HEADER	=	deque.h\
+			push_swap.h
+
 SRC		= 	deque.c\
 			init_number.c\
 			init_number_utils.c\
-			main.c\
+			utils.c\
+			main.c
 
-OBJS		=	$(SRC: .c = .o)
+OBJS		=	$(SRC:.c=.o)
 
-all : $(Name)
+all : $(NAME)
 
-$(Name) : $(OBJS)
-	$(CC) $(CFLAG) -o -$@ $^
+$(NAME) : $(OBJS)
+	$(CC) $(CFLAG) -o $@ $^
 
 clean :
 	$(RM) $(OBJS)
 
 fclean : clean
-	$(RM) $(Name)
+	$(RM) $(NAME)
 
 re : fclean all
 
