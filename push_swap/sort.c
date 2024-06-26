@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   deque.h                                            :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/23 19:33:15 by mku               #+#    #+#             */
-/*   Updated: 2024/06/26 18:08:19 by mku              ###   ########.fr       */
+/*   Created: 2024/06/26 21:49:22 by mku               #+#    #+#             */
+/*   Updated: 2024/06/26 22:34:05 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEQUE_H
-# define	DEQUE_H
+#include "push_swap.h"
 
-# include <stdlib.h>
-
-typedef struct s_node
+void	sort(t_stacks *stacks)
 {
-	struct s_node	*next;
-	struct s_node	*prev;
-	int			number;
-}	t_node;
+	int	pivot;
+	int	i;
+	int	count;
 
-typedef struct s_deque
-{
-	t_node	*head;
-	t_node	*tail;
-	int		count;
-}	t_deque;
-
-void	push_back(t_deque *deque, int number);
-void	push_front(t_deque *deque, int number);
-int	pop_back(t_deque *deque);
-int	pop_front(t_deque *deque);
-
-#endif
+	count = stacks->a_stack->count;
+	pivot = stacks->a_stack->head->number;
+	while (i < count && stacks->a_stack->head != NULL)
+	{
+		if (pivot < stacks->a_stack->head->number)
+		{
+			pb(stacks);
+		}
+		stacks->a_stack->head = stacks->a_stack->head->next;
+		i++;
+	}
+}

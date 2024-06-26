@@ -6,15 +6,13 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:50:52 by mku               #+#    #+#             */
-/*   Updated: 2024/06/23 22:55:20 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/26 22:46:36 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print(t_deque *deque);
-
-void	init_number_type1(t_deque *deque, char **s, int argc)
+void	init_number_type1(t_stacks *stacks, char **s, int argc)
 {
 	int	num;
 	int	i;
@@ -24,33 +22,27 @@ void	init_number_type1(t_deque *deque, char **s, int argc)
 	while (i < argc)
 	{
 		num = ft_atoi(s[i]);
-		push_back(deque, num);
+		push_back(stacks->a_stack, num);
 		i++;
 	}
-	print(deque);
 }
 
-void	init_number_type2(t_deque *deque, char **s)
+void	init_number_type2(t_stacks *stacks, char **s)
 {
 	int	num;
 	char **temp;
 
 	temp = s;
-	check_arg_type2(*temp);
+	check_arg_type2(*s);
 	while (**temp != '\0')
 	{
 		if (**temp == ' ')
 			(*temp)++;
+		else
+		{
 		num = ft_atoi_type2(temp);
-		push_back(deque, num);
+		push_back(stacks->a_stack, num);
+		}
 	}
-	print(deque);
-}
-void	print(t_deque *deque)
-{
-	for(int i = 0 ;i < deque->count; i ++)
-	{
-		printf("[%d] %d\n",i, deque->head->number);
-		deque->head = deque->head->next;
-	}
+
 }

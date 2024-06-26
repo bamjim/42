@@ -11,6 +11,11 @@
                     "init_number_utils.c",
                     "init_number.c",
                     "deque.c",
+                    "operator.c",
+                    "operator2.c",
+                    "operator3.c",
+                    "utils.c",
+                    "sort.c",
                     "-o",
                     "${fileDirname}/${fileBasenameNoExtension}"
                ],

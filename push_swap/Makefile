@@ -8,7 +8,8 @@ HEADER	=	deque.h\
 SRC		= 	deque.c\
 			init_number.c\
 			init_number_utils.c\
-			utils.c\
+			utils.c		\
+			swap.c		\
 			main.c
 
 OBJS		=	$(SRC:.c=.o)

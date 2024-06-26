@@ -6,11 +6,12 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:56:31 by mku               #+#    #+#             */
-/*   Updated: 2024/06/23 23:06:10 by mku              ###   ########.fr       */
+/*   Updated: 2024/06/26 22:16:33 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 int	ft_isdigit(int c);
 
 int	ft_atoi(char *nptr)
@@ -30,6 +31,11 @@ int	ft_atoi(char *nptr)
 	{
 		result = result * 10 + (*nptr - '0');
 		nptr++;
+	}
+	if (result > INT_MAX || result < INT_MIN)
+	{
+		error(ERROR);
+		exit(1);
 	}
 	return (result * sign);
 }
@@ -51,6 +57,11 @@ int	ft_atoi_type2(char **nptr)
 	{
 		result = result * 10 + (**nptr - '0');
 		(*nptr)++;
+	}
+	if (result > INT_MAX || result < INT_MIN)
+	{
+		error(ERROR);
+		exit(1);
 	}
 	return (result * sign);
 }

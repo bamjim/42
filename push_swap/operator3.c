@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   deque.h                                            :+:      :+:    :+:   */
+/*   swap3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/23 19:33:15 by mku               #+#    #+#             */
-/*   Updated: 2024/06/26 18:08:19 by mku              ###   ########.fr       */
+/*   Created: 2024/06/26 21:32:42 by mku               #+#    #+#             */
+/*   Updated: 2024/06/26 21:33:39 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEQUE_H
-# define	DEQUE_H
+#include "push_swap.h"
 
-# include <stdlib.h>
-
-typedef struct s_node
+void	rrr(t_stacks *stack)
 {
-	struct s_node	*next;
-	struct s_node	*prev;
-	int			number;
-}	t_node;
-
-typedef struct s_deque
-{
-	t_node	*head;
-	t_node	*tail;
-	int		count;
-}	t_deque;
-
-void	push_back(t_deque *deque, int number);
-void	push_front(t_deque *deque, int number);
-int	pop_back(t_deque *deque);
-int	pop_front(t_deque *deque);
-
-#endif
+	rra(stack->a_stack);
+	rrb(stack->b_stack);
+}
