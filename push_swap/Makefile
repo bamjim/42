@@ -9,7 +9,10 @@ SRC		= 	deque.c\
 			init_number.c\
 			init_number_utils.c\
 			utils.c		\
-			swap.c		\
+			sort.c		\
+			operator.c	\
+			operator2.c	\
+			operator3.c	\
 			main.c
 
 OBJS		=	$(SRC:.c=.o)

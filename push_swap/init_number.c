@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:50:52 by mku               #+#    #+#             */
-/*   Updated: 2024/06/26 22:46:36 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/02 18:25:24 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	init_number_type1(t_stacks *stacks, char **s, int argc)
 
 void	init_number_type2(t_stacks *stacks, char **s)
 {
-	int	num;
-	char **temp;
+	int		num;
+	char	**temp;
 
 	temp = s;
 	check_arg_type2(*s);
@@ -40,9 +40,8 @@ void	init_number_type2(t_stacks *stacks, char **s)
 			(*temp)++;
 		else
 		{
-		num = ft_atoi_type2(temp);
-		push_back(stacks->a_stack, num);
+			num = ft_atoi_type2(temp);
+			push_back(stacks->a_stack, num);
 		}
 	}
-
 }

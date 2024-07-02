@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:56:31 by mku               #+#    #+#             */
-/*   Updated: 2024/06/26 22:16:33 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/02 18:25:45 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_isdigit(int c);
 
 int	ft_atoi(char *nptr)
 {
-	int		sign;
+	int			sign;
 	long long	result;
 
 	sign = 1;
@@ -42,7 +42,7 @@ int	ft_atoi(char *nptr)
 
 int	ft_atoi_type2(char **nptr)
 {
-	int		sign;
+	int			sign;
 	long long	result;
 
 	sign = 1;

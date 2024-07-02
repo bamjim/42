@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:59:09 by mku               #+#    #+#             */
-/*   Updated: 2024/06/26 22:45:17 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/02 18:24:41 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	sa(t_deque *a_stack)
 
 	if (a_stack->count > 1)
 	{
-	second = a_stack->head->next;
-	third = a_stack->head->next->next;
-	a_stack->head->next = third;
-	a_stack->head->prev = second;
-	second->next = a_stack->head;
-	second->prev = NULL;
-	a_stack->head = second;
+		second = a_stack->head->next;
+		third = a_stack->head->next->next;
+		a_stack->head->next = third;
+		a_stack->head->prev = second;
+		second->next = a_stack->head;
+		second->prev = NULL;
+		a_stack->head = second;
 	}
 }
 
@@ -36,13 +36,13 @@ void	sb(t_deque *b_stack)
 
 	if (b_stack->count > 1)
 	{
-	second = b_stack->head->next;
-	third = b_stack->head->next->next;
-	b_stack->head->next = third;
-	b_stack->head->prev = second;
-	second->next = b_stack->head;
-	second->prev = NULL;
-	b_stack->head = second;
+		second = b_stack->head->next;
+		third = b_stack->head->next->next;
+		b_stack->head->next = third;
+		b_stack->head->prev = second;
+		second->next = b_stack->head;
+		second->prev = NULL;
+		b_stack->head = second;
 	}
 }
 
@@ -58,7 +58,7 @@ void	pa(t_stacks *stacks)
 
 	if (stacks->b_stack->count == 0)
 		return ;
-	temp	= stacks->b_stack->head;
+	temp = stacks->b_stack->head;
 	stacks->b_stack->head = stacks->b_stack->head->next;
 	stacks->b_stack->head->prev = NULL;
 	stacks->b_stack->count--;
@@ -84,7 +84,7 @@ void	pb(t_stacks *stacks)
 
 	if (stacks->a_stack->count == 0)
 		return ;
-	temp	= stacks->a_stack->head;
+	temp = stacks->a_stack->head;
 	stacks->a_stack->head = stacks->a_stack->head->next;
 	stacks->a_stack->head->prev = NULL;
 	stacks->a_stack->count--;

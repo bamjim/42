@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:45:31 by mku               #+#    #+#             */
-/*   Updated: 2024/06/26 22:47:13 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/02 18:26:25 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	push_back(t_deque *deque, int number)
 {
-	t_node *newnode;
+	t_node	*newnode;
 
 	newnode = (t_node *)malloc(sizeof(t_node));
 	if (newnode == NULL)
@@ -37,7 +37,7 @@ void	push_back(t_deque *deque, int number)
 
 void	push_front(t_deque *deque, int number)
 {
-	t_node *newnode;
+	t_node	*newnode;
 
 	newnode = (t_node *)malloc(sizeof(t_node));
 	if (newnode == NULL)
@@ -55,12 +55,11 @@ void	push_front(t_deque *deque, int number)
 	deque->head->prev = newnode;
 	deque->head = newnode;
 	deque->count++;
-
 }
 
 int	pop_back(t_deque *deque)
 {
-	int	number;
+	int		number;
 	t_node	*prev_tail;
 
 	number = deque->tail->number;
@@ -74,7 +73,7 @@ int	pop_back(t_deque *deque)
 
 int	pop_front(t_deque *deque)
 {
-	int	number;
+	int		number;
 	t_node	*next_head;
 
 	number = deque->head->number;

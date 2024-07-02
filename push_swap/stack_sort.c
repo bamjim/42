@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator3.c                                        :+:      :+:    :+:   */
+/*   stack_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 21:32:42 by mku               #+#    #+#             */
-/*   Updated: 2024/07/02 18:21:53 by mku              ###   ########.fr       */
+/*   Created: 2024/07/02 18:39:54 by mku               #+#    #+#             */
+/*   Updated: 2024/07/02 18:41:44 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rrr(t_stacks *stack)
+void	sort_stack_a(t_stacks *stacks, int left, int right)
 {
-	rra(stack->a_stack);
-	rrb(stack->b_stack);
+	if (left > right)
+		return ;
 }
