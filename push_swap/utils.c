@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 23:01:31 by mku               #+#    #+#             */
-/*   Updated: 2024/06/27 21:20:05 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/05 16:03:57 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,31 @@ void	print_list(t_stacks *stacks)
 	t_node	*a_head;
 	t_node	*b_head;
 
-	a_head = stacks->a_stack->head;
-	b_head = stacks->b_stack->head;
-	if (stacks->a_stack->count <= stacks->b_stack->count)
-		count = stacks->b_stack->count;
+	a_head = stacks->a->head;
+	b_head = stacks->b->head;
+	if (stacks->a->count <= stacks->b->count)
+		count = stacks->b->count;
 	else
-		count = stacks->a_stack->count;
+		count = stacks->a->count;
 	for (int i = 0 ; i < count; i ++)
 	{
-		if (stacks->a_stack->head != NULL)
+		if (stacks->a->head != NULL)
 		{
-			printf(" %d ",stacks->a_stack->head->number);
-			stacks->a_stack->head = stacks->a_stack->head->next;
+			printf(" %d ",stacks->a->head->number);
+			stacks->a->head = stacks->a->head->next;
 		}
 		else
 			printf("null");
 		printf("    ");
-		if (stacks->b_stack->head != NULL)
+		if (stacks->b->head != NULL)
 		{
-			printf(" %d \n",stacks->b_stack->head->number);
-			stacks->b_stack->head = stacks->b_stack->head->next;
+			printf(" %d \n",stacks->b->head->number);
+			stacks->b->head = stacks->b->head->next;
 		}
 		else
 			printf("null\n");
 	}
-	printf("[%d]   [%d]\n",stacks->a_stack->count,stacks->b_stack->count);
-	stacks->a_stack->head = a_head;
-	stacks->b_stack->head = b_head;
+	printf("[%d]   [%d]\n",stacks->a->count,stacks->b->count);
+	stacks->a->head = a_head;
+	stacks->b->head = b_head;
 }

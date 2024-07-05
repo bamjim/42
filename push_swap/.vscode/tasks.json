@@ -16,6 +16,7 @@
                     "operator3.c",
                     "utils.c",
                     "sort.c",
+                    "stack_sort.c",
                     "-o",
                     "${fileDirname}/${fileBasenameNoExtension}"
                ],

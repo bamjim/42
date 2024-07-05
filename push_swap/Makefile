@@ -10,6 +10,7 @@ SRC		= 	deque.c\
 			init_number_utils.c\
 			utils.c		\
 			sort.c		\
+			stack_sort.c	\
 			operator.c	\
 			operator2.c	\
 			operator3.c	\

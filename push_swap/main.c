@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:50:59 by mku               #+#    #+#             */
-/*   Updated: 2024/07/02 18:16:40 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/05 18:44:31 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,19 @@ int	main(int argc, char **argv)
 {
 	t_stacks	stacks;
 
-	if (argc < 2)
-		error(ERROR);
-	//char *a = "7 49 61 97 -80 14 9 -17 41 1";
+	//if (argc < 2)
+	//	error(ERROR);
+	char *a = "7 49 61 97 -80 14 9 -17 41 1 100";
 	set_stacks(&stacks);
-	if (argc == 2)
-		init_number_type2(&stacks, &argv[1]);
-	else
-		init_number_type1(&stacks, argv, argc);
+	//if (argc == 2)
+		init_number_type2(&stacks, &a);
+	//else
+	//	init_number_type1(&stacks, argv, argc);
 
 	//sa(deque);
-	quick_sort(&stacks);
+	//quick_sort(&stacks);
+	//print_list(&stacks);
+	stack_sort(&stacks);
 }
 
 static void	set_stacks(t_stacks *stacks)
@@ -48,6 +50,6 @@ static void	set_stacks(t_stacks *stacks)
 	b_stack->count = 0;
 	b_stack->head = NULL;
 	b_stack->tail = NULL;
-	stacks->a_stack = a_stack;
-	stacks->b_stack = b_stack;
+	stacks->a = a_stack;
+	stacks->b = b_stack;
 }

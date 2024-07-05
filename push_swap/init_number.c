@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:50:52 by mku               #+#    #+#             */
-/*   Updated: 2024/07/02 18:25:24 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/05 16:08:48 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,20 @@ void	init_number_type1(t_stacks *stacks, char **s, int argc)
 {
 	int	num;
 	int	i;
+	int	j;
 
 	i = 1;
 	check_arg(s, argc);
 	while (i < argc)
 	{
-		num = ft_atoi(s[i]);
-		push_back(stacks->a_stack, num);
+		j = 0;
+		while (s[i][j] != '\0')
+		{
+			if (s[i][j] == ' ')
+				j++;
+			num = ft_atoi(s[i], &j);
+			push_back(stacks->a, num);
+		}
 		i++;
 	}
 }
@@ -41,7 +48,7 @@ void	init_number_type2(t_stacks *stacks, char **s)
 		else
 		{
 			num = ft_atoi_type2(temp);
-			push_back(stacks->a_stack, num);
+			push_back(stacks->a, num);
 		}
 	}
 }

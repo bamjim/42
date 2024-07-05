@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:56:31 by mku               #+#    #+#             */
-/*   Updated: 2024/07/02 18:25:45 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/04 17:23:11 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,25 @@
 
 int	ft_isdigit(int c);
 
-int	ft_atoi(char *nptr)
+int	ft_atoi(char *nptr, int *i)
 {
 	int			sign;
 	long long	result;
 
 	sign = 1;
 	result = 0;
-	if (*nptr == '-' || *nptr == '+')
+	while (nptr[*i] == ' ')
+		(*i)++;
+	if (nptr[*i] == '-' || nptr[*i] == '+')
 	{
-		if (*nptr == '-')
+		if (nptr[*i] == '-')
 			sign *= -1;
-		nptr++;
+		(*i)++;
 	}
-	while (ft_isdigit(*nptr) && *nptr != '\0')
+	while (ft_isdigit(nptr[*i]) && nptr[*i] != '\0')
 	{
-		result = result * 10 + (*nptr - '0');
-		nptr++;
+		result = result * 10 + (nptr[*i] - '0');
+		(*i)++;
 	}
 	if (result > INT_MAX || result < INT_MIN)
 	{
