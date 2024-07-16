@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:11:19 by mku               #+#    #+#             */
-/*   Updated: 2024/07/05 18:38:29 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/16 19:31:49 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,32 @@ void	check_arg_type2(char *s);
 //utils.c
 void	error(char *error);
 void	print_list(t_stacks *stacks);
-void	set_head_tail(t_stacks *stacks);
-//swap.c
+void	swap(int *a, int *b);
+//operator.c
 void	sa(t_deque *a_stack);
 void	sb(t_deque *b_stack);
 void	ss(t_stacks *stacks);
 void	pa(t_stacks *stacks);
 void	pb(t_stacks *stacks);
-//swap2.c
+//operator2.c
 void	ra(t_deque *a_stack);
 void	rb(t_deque *a_stack);
 void	rr(t_stacks *stacks);
 void	rra(t_deque *a_stack);
 void	rrb(t_deque *b_stack);
-//swap3.c
+//operator3.c
 void	rrr(t_stacks *stack);
 //sort.c
 void	quick_sort(t_stacks *stacks);
 void	sort(int	*arr, int left, int right);
-void	swap(int *a, int *b);
 //stack_sort.c
-void	stack_sort(t_stacks *stacks);
+void	greedy(t_stacks *stacks);
+//base_case.c
+void	base_case_sort(t_deque *a);
+//base_case_utils.c
+void	case_132(t_deque *a);
+void	case_231(t_deque *a);
+void	case_321(t_deque *a);
+void case_312(t_deque *a);
+
 #endif

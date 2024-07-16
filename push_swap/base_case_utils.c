@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator3.c                                        :+:      :+:    :+:   */
+/*   base_case_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 21:32:42 by mku               #+#    #+#             */
-/*   Updated: 2024/07/16 18:07:18 by mku              ###   ########.fr       */
+/*   Created: 2024/07/16 18:14:03 by mku               #+#    #+#             */
+/*   Updated: 2024/07/16 19:24:51 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rrr(t_stacks *stack)
+void	case_132(t_deque *a)
 {
-	rra(stack->a);
-	rrb(stack->b);
-	printf("rrr");
+	rra(a);
+	sa(a);
+}
+
+void	case_231(t_deque *a)
+{
+	rra(a);
+}
+
+void	case_321(t_deque *a)
+{
+	rra(a);
+	rra(a);
+}
+
+void case_312(t_deque *a)
+{
+	ra(a);
 }

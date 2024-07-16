@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:50:59 by mku               #+#    #+#             */
-/*   Updated: 2024/07/05 18:44:31 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/16 19:38:22 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,19 @@ int	main(int argc, char **argv)
 
 	//if (argc < 2)
 	//	error(ERROR);
-	char *a = "7 49 61 97 -80 14 9 -17 41 1 100";
+	//char *a = "7 49 9 97 -80 14 61 -17 41 1 100";
+	char *a = "7 4 7";
 	set_stacks(&stacks);
 	//if (argc == 2)
 		init_number_type2(&stacks, &a);
 	//else
 	//	init_number_type1(&stacks, argv, argc);
 
-	//sa(deque);
-	//quick_sort(&stacks);
-	//print_list(&stacks);
-	stack_sort(&stacks);
+
+	if (stacks.a->count <= 3)
+		base_case_sort(stacks.a);
+	else
+		greedy(&stacks);
 }
 
 static void	set_stacks(t_stacks *stacks)

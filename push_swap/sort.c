@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 21:49:22 by mku               #+#    #+#             */
-/*   Updated: 2024/07/05 16:06:48 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/16 18:04:01 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 void	set_arr(t_stacks *a_stack);
 void	sort(int	*arr, int left, int right);
 static int		set_pivot(int *arr, int left, int rigth);
-void	swap(int *a, int *b);
 
-void	quick_sort(t_stacks *stacks)
+void	sort(int	*arr, int left, int right)
 {
-	int	*arr;
+	int	pivot;
 
-	set_arr(stacks);
-	sort(stacks->arr, 0, stacks->arr_count);
-	for(int i = 0; i < stacks->a->count; i++)
-		printf("%d\n",stacks->arr[i]);
+	if (left > right)
+		return ;
+	pivot = set_pivot(arr, left, right);
+	sort(arr, left, pivot -1);
+	sort(arr, pivot + 1, right);
 }
 
 void	set_arr(t_stacks *stacks)
@@ -49,17 +49,6 @@ void	set_arr(t_stacks *stacks)
 	stacks->arr_count = stacks->a->count - 1;
 }
 
-void	sort(int	*arr, int left, int right)
-{
-	int	pivot;
-
-	if (left > right)
-		return ;
-	pivot = set_pivot(arr, left, right);
-	sort(arr, left, pivot -1);
-	sort(arr, pivot + 1, right);
-}
-
 static int	set_pivot(int	*arr, int left, int right)
 {
 	int	pivot;
@@ -80,13 +69,4 @@ static int	set_pivot(int	*arr, int left, int right)
 	}
 	swap(&arr[left], &arr[high]);
 	return (high);
-}
-
-void	swap(int *a, int *b)
-{
-	int	temp;
-
-	temp =*a;
-	*a = *b;
-	*b = temp;
 }

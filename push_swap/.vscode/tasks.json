@@ -17,6 +17,8 @@
                     "utils.c",
                     "sort.c",
                     "stack_sort.c",
+                    "base_case.c",
+                    "base_case_utils.c",
                     "-o",
                     "${fileDirname}/${fileBasenameNoExtension}"
                ],
