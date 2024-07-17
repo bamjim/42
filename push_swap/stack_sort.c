@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:39:54 by mku               #+#    #+#             */
-/*   Updated: 2024/07/16 19:41:52 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/17 18:27:20 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,17 @@ void	set_pivot(t_deque *stack, int *pivot)
 	free(arr);
 }
 
+void	find_best(t_stacks *stacks)
+{
+	t_oper *oper;
+	int	i;
 
+	i = 0;
+	oper = (t_oper *)malloc(sizeof(t_oper) * stacks->b->count);
+	if (oper == NULL)
+		error("error");
+	while (stacks->b->head != NULL)
+	{
 
-//void	b_to_a(t_stacks *stacks)
-//{
-
-//}
+	}
+}

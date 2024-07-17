@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:11:19 by mku               #+#    #+#             */
-/*   Updated: 2024/07/16 19:31:49 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/17 18:04:47 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ typedef struct s_stacks
 	int		*arr;
 	int		arr_count;
 }	t_stacks;
+
+typedef struct s_oper
+{
+	int	rb;
+	int	rrb;
+	int	ra;
+	int	rra;
+	int	total;
+}	t_oper;
 
 //init_number.c
 void	init_number_type1(t_stacks *stacks, char **s, int argc);
