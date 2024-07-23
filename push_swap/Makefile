@@ -1,19 +1,18 @@
 NAME 	= 	push_swap
 CC		= 	cc
-CFLAG	= 	-Wextra -Werror -Wall
+CFLAG		= 	-Wextra -Werror -Wall
 RM		=	-rm
-HEADER	=	deque.h\
-			push_swap.h
-
-SRC		= 	deque.c\
+SRC		= 	list.c\
 			init_number.c\
 			init_number_utils.c\
 			utils.c		\
-			sort.c		\
+			quick_sort.c		\
 			stack_sort.c	\
 			operator.c	\
 			operator2.c	\
 			operator3.c	\
+			base_case.c	\
+			base_case_utils.c\
 			main.c
 
 OBJS		=	$(SRC:.c=.o)

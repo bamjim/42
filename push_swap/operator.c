@@ -6,13 +6,13 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:59:09 by mku               #+#    #+#             */
-/*   Updated: 2024/07/16 18:07:23 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/22 21:17:32 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_deque *a_stack)
+void	sa(t_list *a_stack)
 {
 	t_node	*second;
 	t_node	*third;
@@ -26,11 +26,11 @@ void	sa(t_deque *a_stack)
 		second->next = a_stack->head;
 		second->prev = NULL;
 		a_stack->head = second;
-		write(1,"sa\n",3);
+		write(1, "sa\n", 3);
 	}
 }
 
-void	sb(t_deque *b_stack)
+void	sb(t_list *b_stack)
 {
 	t_node	*second;
 	t_node	*third;
@@ -44,7 +44,7 @@ void	sb(t_deque *b_stack)
 		second->next = b_stack->head;
 		second->prev = NULL;
 		b_stack->head = second;
-		write(1,"sb\n",3);
+		write(1, "sb\n", 3);
 	}
 }
 
@@ -52,7 +52,7 @@ void	ss(t_stacks *stacks)
 {
 	sa(stacks->a);
 	sb(stacks->b);
-	write(1,"ss\n",3);
+	write(1, "ss\n", 3);
 }
 
 void	pa(t_stacks *stacks)
@@ -64,7 +64,7 @@ void	pa(t_stacks *stacks)
 	temp = stacks->b->head;
 	stacks->b->head = stacks->b->head->next;
 	if (stacks->b->count != 1)
-	stacks->b->head->prev = NULL;
+		stacks->b->head->prev = NULL;
 	stacks->b->count--;
 	if (stacks->a->count == 0)
 	{
@@ -73,7 +73,7 @@ void	pa(t_stacks *stacks)
 		stacks->a->count++;
 		temp->next = NULL;
 		temp->prev = NULL;
-		write(1,"pa\n",3);
+		write(1, "pa\n", 3);
 		return ;
 	}
 	temp->next = stacks->a->head;
@@ -81,7 +81,7 @@ void	pa(t_stacks *stacks)
 	temp->prev = NULL;
 	stacks->a->head = temp;
 	stacks->a->count++;
-	write(1,"pa\n",3);
+	write(1, "pa\n", 3);
 }
 
 void	pb(t_stacks *stacks)
@@ -102,7 +102,7 @@ void	pb(t_stacks *stacks)
 		stacks->b->count++;
 		temp->next = NULL;
 		temp->prev = NULL;
-		write(1,"pb\n",3);
+		write(1, "pb\n", 3);
 		return ;
 	}
 	temp->next = stacks->b->head;
@@ -110,5 +110,5 @@ void	pb(t_stacks *stacks)
 	temp->prev = NULL;
 	stacks->b->head = temp;
 	stacks->b->count++;
-	write(1,"pb\n",3);
+	write(1, "pb\n", 3);
 }

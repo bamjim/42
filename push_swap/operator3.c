@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 21:32:42 by mku               #+#    #+#             */
-/*   Updated: 2024/07/16 18:07:18 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/22 21:11:20 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void	rrr(t_stacks *stack)
 {
 	rra(stack->a);
 	rrb(stack->b);
-	printf("rrr");
+	write(1, "rrr\n", 4);
 }

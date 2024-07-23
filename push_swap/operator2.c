@@ -6,13 +6,13 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:21:27 by mku               #+#    #+#             */
-/*   Updated: 2024/07/16 18:07:23 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/22 21:17:32 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_deque *a_stack)
+void	ra(t_list *a_stack)
 {
 	t_node	*t_head;
 
@@ -25,11 +25,11 @@ void	ra(t_deque *a_stack)
 		a_stack->tail->next = t_head;
 		t_head->prev = a_stack->tail;
 		a_stack->tail = t_head;
-		write(1,"ra\n",3);
+		write(1, "ra\n", 3);
 	}
 }
 
-void	rb(t_deque *b_stack)
+void	rb(t_list *b_stack)
 {
 	t_node	*t_head;
 
@@ -42,7 +42,7 @@ void	rb(t_deque *b_stack)
 		b_stack->tail->next = t_head;
 		t_head->prev = b_stack->tail;
 		b_stack->tail = t_head;
-		write(1,"rb\n",3);
+		write(1, "rb\n", 3);
 	}
 }
 
@@ -50,10 +50,10 @@ void	rr(t_stacks *stacks)
 {
 	ra(stacks->a);
 	rb(stacks->a);
-	write(1,"rr\n",3);
+	write(1, "rr\n", 3);
 }
 
-void	rra(t_deque *a_stack)
+void	rra(t_list *a_stack)
 {
 	t_node	*temp;
 
@@ -66,11 +66,11 @@ void	rra(t_deque *a_stack)
 		a_stack->head->prev = temp;
 		temp->prev = NULL;
 		a_stack->head = temp;
-		write(1,"rra\n",4);
+		write(1, "rra\n", 4);
 	}
 }
 
-void	rrb(t_deque *b_stack)
+void	rrb(t_list *b_stack)
 {
 	t_node	*temp;
 
@@ -83,6 +83,6 @@ void	rrb(t_deque *b_stack)
 		b_stack->head->prev = temp;
 		temp->prev = NULL;
 		b_stack->head = temp;
-		write(1,"rrb\n",4);
+		write(1, "rrb\n", 4);
 	}
 }

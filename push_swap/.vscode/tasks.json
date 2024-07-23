@@ -15,7 +15,7 @@
                     "operator2.c",
                     "operator3.c",
                     "utils.c",
-                    "sort.c",
+                    "quick_sort.c",
                     "stack_sort.c",
                     "base_case.c",
                     "base_case_utils.c",

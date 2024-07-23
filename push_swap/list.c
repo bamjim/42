@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   deque.c                                            :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:45:31 by mku               #+#    #+#             */
-/*   Updated: 2024/07/02 18:26:25 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/22 21:17:32 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "deque.h"
+#include "list.h"
 #include "push_swap.h"
 
-void	push_back(t_deque *deque, int number)
+void	push_back(t_list *deque, int number)
 {
 	t_node	*newnode;
 
@@ -35,7 +35,7 @@ void	push_back(t_deque *deque, int number)
 	deque->count++;
 }
 
-void	push_front(t_deque *deque, int number)
+void	push_front(t_list *deque, int number)
 {
 	t_node	*newnode;
 
@@ -57,7 +57,7 @@ void	push_front(t_deque *deque, int number)
 	deque->count++;
 }
 
-int	pop_back(t_deque *deque)
+int	pop_back(t_list *deque)
 {
 	int		number;
 	t_node	*prev_tail;
@@ -71,7 +71,7 @@ int	pop_back(t_deque *deque)
 	return (number);
 }
 
-int	pop_front(t_deque *deque)
+int	pop_front(t_list *deque)
 {
 	int		number;
 	t_node	*next_head;

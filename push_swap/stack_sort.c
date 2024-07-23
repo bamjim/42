@@ -6,82 +6,77 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:39:54 by mku               #+#    #+#             */
-/*   Updated: 2024/07/17 18:27:20 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/22 21:25:49 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	set_pivot(t_deque *stack, int *pivot);
+static int	find_place(t_stacks *stacks);
+static void	a_sort(t_stacks *stacks, int place);
+int			is_sorted(t_list *a);
 
-void	greedy(t_stacks *stacks)
+void	radix(t_stacks *stacks)
 {
-	int	pivot[2];
-	int	i;
-	int	size;
+	int	place;
 
-	size = stacks->a->count;
-	i = 0;
-	set_pivot(stacks->a, pivot);
-	while (i < size)
-	{
-		if (pivot[SMALL] >= stacks->a->head->number)
-		{
-			pb(stacks);
-			rb(stacks->b);
-		}
-		if (pivot[BIG] >= stacks->a->head->number)
-			pb(stacks);
-		else
-			ra(stacks->a);
-		i++;
-	}
-	while (stacks->a->count > 3)
-		pb(stacks);
-	base_case_sort(stacks->a);
-	print_list(stacks);
+	place = find_place(stacks);
+	a_sort(stacks, place);
 }
 
-void	set_pivot(t_deque *stack, int *pivot)
+static int	find_place(t_stacks *stacks)
 {
-	int	*arr;
-	int	size;
+	int	place;
+	int	max;
+
+	place = 0;
+	max = stacks->a->max;
+	while (max != 0)
+	{
+		max = max >> 1;
+		place++;
+	}
+	return (place);
+}
+
+int	is_sorted(t_list *a)
+{
 	t_node	*temp;
 
-	size = 0;
-	arr = NULL;
-	temp = stack->head;
-	if (stack->count == 2 && stack->head->number > stack->tail->number)
+	temp = a->head;
+	while (a->head->next != NULL && a->head != NULL)
 	{
-		pivot[BIG] = stack->head->number;
-		return ;
+		if (a->head->number > a->head->next->number)
+		{
+			a->head = temp;
+			return (1);
+		}
+		a->head = a->head->next;
 	}
-	arr = malloc(sizeof(int) * stack->count);
-	if (arr == NULL)
-		error("malloc error");
-	while (temp != NULL)
-	{
-		arr[size] = temp->number;
-		temp = temp->next;
-		size++;
-	}
-	sort(arr, 0, size);
-	pivot[BIG] = arr[size/3 * 2];
-	pivot[SMALL] = arr[(size / 3)];
-	free(arr);
+	a->head = temp;
+	return (0);
 }
 
-void	find_best(t_stacks *stacks)
+static void	a_sort(t_stacks *stacks, int place)
 {
-	t_oper *oper;
-	int	i;
+	int		i;
+	int		j;
+	int		a_count;
+	t_node	*a_temp;
 
 	i = 0;
-	oper = (t_oper *)malloc(sizeof(t_oper) * stacks->b->count);
-	if (oper == NULL)
-		error("error");
-	while (stacks->b->head != NULL)
+	while (i < place)
 	{
-
+		a_count = stacks->a->count;
+		while (a_count-- && is_sorted(stacks->a))
+		{
+			if (((stacks->a->head->number >> i) & 1) == 0)
+				pb(stacks);
+			else
+				ra(stacks->a);
+		}
+		i++;
+		while (stacks->b->head != NULL)
+			pa(stacks);
 	}
 }
