@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 22:19:05 by mku               #+#    #+#             */
-/*   Updated: 2024/07/25 22:49:53 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/26 20:17:58 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,26 @@
 # include <stdlib.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <fcntl.h>
 
 typedef struct s_all
 {
+	int	pid;
+	int	pid2;
 	char *cmd;
 	char	*cmd2;
-	char	*acc_cmd;
-	char	*acc_cmd2;
+	char *sl_cmd;
+	char *sl_cmd2;
+	char	**sp_cmd;
+	char	**sp_cmd2;
 	char	*path;
+	char *path2;
 	char **path_split;
 }	t_all;
 
+//pipex_utils.c
+void	set_all(char *cmd, char *cmd2, t_all *all);
+void	find_path(char **envp, t_all *all);
 //utils.c
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char const *s, char c);
