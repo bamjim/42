@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 19:04:49 by mku               #+#    #+#             */
-/*   Updated: 2024/07/26 20:25:01 by mku              ###   ########.fr       */
+/*   Updated: 2024/07/30 20:15:55 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static void	init_path(t_all *all, int i)
 	while (all->path_split[i] != NULL)
 	{
 		temp = ft_strjoin(all->path_split[i], all->sl_cmd);
-		if (access(temp, X_OK) == 0)
+		if (access(temp, X_OK | X_OK) == 0)
 		{
-			all->path = ft_strdup(all->path_split[i]);
+			all->path = ft_strjoin(all->path_split[i], all->sl_cmd);
 			break;
 		}
 		free(temp);
@@ -67,9 +67,9 @@ static void	init_path2(t_all *all, int i)
 	while (all->path_split[i] != NULL)
 	{
 		temp = ft_strjoin(all->path_split[i], all->sl_cmd2);
-		if (access(temp, X_OK) == 0)
+		if (access(temp, X_OK | F_OK) == 0)
 		{
-			all->path2 = ft_strdup(all->path_split[i]);
+			all->path2 = ft_strjoin(all->path_split[i], all->sl_cmd2);
 			break;
 		}
 		free(temp);
