@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:46:50 by mku               #+#    #+#             */
-/*   Updated: 2024/07/30 20:51:51 by mku              ###   ########.fr       */
+/*   Updated: 2024/08/03 19:40:52 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,69 +14,85 @@
 
 static void	child(char **argv, char **envp, t_all *all, int *pipe);
 static void	child2(char **argv, char **envp, t_all *all, int *pipe);
+static void	fork_g_child(t_all *all, char **argv, char **envp, int *pipe_fd);
+void		error(char *a);
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	t_all	all;
 	int		pipe_fd[2];
 
 	if (pipe(pipe_fd) == -1)
-		exit(1);
-	if (argc != 5 )
-	{
-		write(2, "wrong argv", 11);
-		exit(1);
-	}
+		error("pipe error\n");
+	if (argc != 5)
+		error("wrong arg\n");
 	set_all(argv[2], argv[3], &all);
 	find_path(envp, &all);
 	all.pid = fork();
 	if (all.pid == -1)
-		exit(1);
+		error("fork error\n");
 	else if (all.pid == 0)
 		child(argv, envp, &all, pipe_fd);
 	else
 	{
-		all.pid2 = fork();
-		if (all.pid2 == -1)
-			exit(1);
-		else if (all.pid2 == 0)
-			child2(argv, envp, &all, pipe_fd);
-		else
-		{
-			close(pipe_fd[0]);
-			close(pipe_fd[1]);
-			waitpid(all.pid, NULL, 0);
-			waitpid(all.pid2, NULL, 0);
-		}
+		fork_g_child(&all, argv, envp, pipe_fd);
+		close(pipe_fd[0]);
+		close(pipe_fd[1]);
+		waitpid(all.pid, NULL, 0);
+		waitpid(all.pid2, NULL, 0);
+		free_var(&all);
 	}
+}
+
+static void	fork_g_child(t_all *all, char **argv, char **envp, int *pipe_fd)
+{
+	all->pid2 = fork();
+	if (all->pid2 == -1)
+		error("fork error\n");
+	else if (all->pid2 == 0)
+		child2(argv, envp, all, pipe_fd);
 }
 
 static void	child(char **argv, char **envp, t_all *all, int *pipe)
 {
-	int	fd;
+	int		fd;
+	char	*path;
 
+	path = init_path(all, 0, all->sl_cmd);
+	if (path == NULL)
+		error("command not found\n");
 	fd = open(argv[1], O_RDONLY, 0777);
 	if (fd == -1)
-		exit(1);
+		error("no such file");
 	close(pipe[0]);
 	dup2(pipe[1], 1);
 	dup2(fd, 0);
 	close(fd);
-	if (execve(all->path, all->sp_cmd, envp) == -1)
-		perror("execve");
+	if (execve(path, all->sp_cmd, envp) == -1)
+		perror("mku");
 }
 
 static void	child2(char **argv, char **envp, t_all *all, int *pipe)
 {
-	int	fd;
+	int		fd;
+	char	*path;
 
+	path = init_path(all, 0, all->sl_cmd2);
+	if (path == NULL)
+		error("command not found\n");
 	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd == -1)
-		exit(1);
+		error("no such file");
 	close(pipe[1]);
 	dup2(pipe[0], 0);
 	dup2(fd, 1);
 	close(fd);
-	if (execve(all->path2, all->sp_cmd2, envp) == -1)
-		perror("execve");
+	if (execve(path, all->sp_cmd2, envp) == -1)
+		perror("mku");
+}
+
+void	error(char *a)
+{
+	write(2, a, ft_strlen(a));
+	exit(1);
 }

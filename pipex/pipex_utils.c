@@ -6,25 +6,27 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 19:04:49 by mku               #+#    #+#             */
-/*   Updated: 2024/07/30 20:15:55 by mku              ###   ########.fr       */
+/*   Updated: 2024/08/03 19:40:45 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	init_path(t_all *all, int i);
-static void	init_path2(t_all *all, int i);
+static char	*cmd_path_check(char *cmd);
 
 void	set_all(char *cmd, char *cmd2, t_all *all)
 {
-	char	**temp;
+	char	*t_cmd;
+	char	*t_cmd2;
 
-	all->cmd = cmd;
-	all->cmd2 = cmd2;
-	all->sp_cmd = ft_split(cmd, ' ');
+	t_cmd = cmd_path_check(cmd);
+	all->sp_cmd = ft_split(t_cmd, ' ');
 	all->sl_cmd = ft_strjoin("/", all->sp_cmd[0]);
-	all->sp_cmd2 = ft_split(cmd2, ' ');
+	t_cmd2 = cmd_path_check(cmd2);
+	all->sp_cmd2 = ft_split(t_cmd2, ' ');
 	all->sl_cmd2 = ft_strjoin("/", all->sp_cmd2[0]);
+	free(t_cmd);
+	free(t_cmd2);
 }
 
 void	find_path(char **envp, t_all *all)
@@ -39,46 +41,77 @@ void	find_path(char **envp, t_all *all)
 		i++;
 	}
 	all->path_split = ft_split(all->path, ':');
-	init_path(all, 0);
-	init_path2(all, 0);
+	free(all->path);
 }
 
-static void	init_path(t_all *all, int i)
+char	*init_path(t_all *all, int i, char *sl_cmd)
 {
-	char *temp;
+	char	*temp;
 
 	while (all->path_split[i] != NULL)
 	{
-		temp = ft_strjoin(all->path_split[i], all->sl_cmd);
-		if (access(temp, X_OK | X_OK) == 0)
-		{
-			all->path = ft_strjoin(all->path_split[i], all->sl_cmd);
-			break;
-		}
-		free(temp);
-		i++;
-	}
-}
-
-static void	init_path2(t_all *all, int i)
-{
-	char *temp;
-
-	while (all->path_split[i] != NULL)
-	{
-		temp = ft_strjoin(all->path_split[i], all->sl_cmd2);
+		temp = ft_strjoin(all->path_split[i], sl_cmd);
 		if (access(temp, X_OK | F_OK) == 0)
 		{
-			all->path2 = ft_strjoin(all->path_split[i], all->sl_cmd2);
-			break;
+			free(temp);
+			return (ft_strjoin(all->path_split[i], sl_cmd));
 		}
 		free(temp);
 		i++;
 	}
+	return (NULL);
+}
+
+static char	*cmd_path_check(char *cmd)
+{
+	char	**temp;
+	int		i;
+	char	*result;
+
+	i = 0;
+	if (cmd[0] == '/')
+	{
+		temp = ft_split(cmd, '/');
+		while (temp[i + 1] != NULL)
+			i++;
+		result = temp[i];
+		i--;
+		while (i >= 0)
+		{
+			free(temp[i]);
+			i--;
+		}
+		free(temp);
+		return (result);
+	}
+	return (ft_strdup(cmd));
+}
+
+void	free_var(t_all *all)
+{
+	int	i;
+
+	i = 0;
+	free(all->sl_cmd2);
+	free(all->sl_cmd);
+	while (all->sp_cmd[i] != NULL)
+	{
+		free(all->sp_cmd[i]);
+		i++;
+	}
+	i = 0;
+	while (all->sp_cmd2[i] != NULL)
+	{
+		free(all->sp_cmd2[i]);
+		i++;
+	}
+	free(all->sp_cmd);
+	free(all->sp_cmd2);
 	i = 0;
 	while (all->path_split[i] != NULL)
 	{
 		free(all->path_split[i]);
 		i++;
 	}
+	free(all->path_split);
 }

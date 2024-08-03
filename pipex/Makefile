@@ -1,6 +1,6 @@
 NAME		= 	pipex
 CC		=	cc
-CFLAG		=	-Werror -Wextra -Wall
+CFLAG		=	-g -fsanitize=address -Werror -Wextra -Wall
 RM		=	-rm
 SRC		=	ft_split.c\
 			utils.c\
