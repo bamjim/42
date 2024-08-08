@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 22:16:07 by mku               #+#    #+#             */
-/*   Updated: 2024/08/02 18:21:31 by mku              ###   ########.fr       */
+/*   Updated: 2024/08/07 18:06:48 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*buffer;
 	int		i;
+	int		length;
 
 	i = 0;
 	if (s == NULL)
@@ -41,12 +42,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (ft_strlen(s) <= start)
 		return (ft_strdup(""));
 	if (ft_strlen(s) - start <= len)
-		buffer = (char *)malloc((ft_strlen(s) - start + 1) * sizeof(char));
+		length = ft_strlen(s) - start + 1;
 	else
-		buffer = (char *)malloc((len + 1) * sizeof(char));
+		length = len + 1;
+	buffer = (char *)malloc(length * sizeof(char));
 	if (!buffer)
 		return (NULL);
-	while (len)
+	while (length && s[start] != '\0')
 	{
 		buffer[i] = s[start];
 		i++;

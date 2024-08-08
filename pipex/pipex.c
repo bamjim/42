@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:46:50 by mku               #+#    #+#             */
-/*   Updated: 2024/08/03 19:40:52 by mku              ###   ########.fr       */
+/*   Updated: 2024/08/08 18:48:47 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	child(char **argv, char **envp, t_all *all, int *pipe)
 	int		fd;
 	char	*path;
 
-	path = init_path(all, 0, all->sl_cmd);
+	path = init_path(all, 0, all->sl_cmd, all->cmd);
 	if (path == NULL)
 		error("command not found\n");
 	fd = open(argv[1], O_RDONLY, 0777);
@@ -77,7 +77,7 @@ static void	child2(char **argv, char **envp, t_all *all, int *pipe)
 	int		fd;
 	char	*path;
 
-	path = init_path(all, 0, all->sl_cmd2);
+	path = init_path(all, 0, all->sl_cmd2, all->cmd2);
 	if (path == NULL)
 		error("command not found\n");
 	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);

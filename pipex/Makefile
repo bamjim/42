@@ -1,7 +1,7 @@
 NAME		= 	pipex
 CC		=	cc
-CFLAG		=	-g -fsanitize=address -Werror -Wextra -Wall
-RM		=	-rm
+CFLAG		=	 -Werror -Wextra -Wall
+RM		=	rm -f 
 SRC		=	ft_split.c\
 			utils.c\
 			pipex.c\
@@ -10,6 +10,9 @@ SRC		=	ft_split.c\
 OBJ		=	$(SRC:.c=.o)
 
 all : $(NAME)
+
+%.o: %.c
+	$(CC) $(CFLAG) -c $< -o $@
 
 $(NAME) : $(OBJ)
 	$(CC) $(CFLAG) -o $@ $^
