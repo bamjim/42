@@ -1,7 +1,7 @@
 NAME		= 	pipex
 CC		=	cc
-CFLAG		=	 -Werror -Wextra -Wall
-RM		=	rm -f 
+CFLAG		=	-g -Werror -Wextra -Wall
+RM		=	rm -f
 SRC		=	ft_split.c\
 			utils.c\
 			pipex.c\

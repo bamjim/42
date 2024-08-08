@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:46:50 by mku               #+#    #+#             */
-/*   Updated: 2024/08/08 18:48:47 by mku              ###   ########.fr       */
+/*   Updated: 2024/08/08 20:05:19 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv, char **envp)
 		error("pipe error\n");
 	if (argc != 5)
 		error("wrong arg\n");
-	set_all(argv[2], argv[3], &all);
+	split_cmd(&all, argv);
 	find_path(envp, &all);
 	all.pid = fork();
 	if (all.pid == -1)
@@ -56,10 +56,9 @@ static void	fork_g_child(t_all *all, char **argv, char **envp, int *pipe_fd)
 static void	child(char **argv, char **envp, t_all *all, int *pipe)
 {
 	int		fd;
-	char	*path;
 
-	path = init_path(all, 0, all->sl_cmd, all->cmd);
-	if (path == NULL)
+	all->path = get_path(all, all->cmd);
+	if (all->path == NULL)
 		error("command not found\n");
 	fd = open(argv[1], O_RDONLY, 0777);
 	if (fd == -1)
@@ -68,17 +67,16 @@ static void	child(char **argv, char **envp, t_all *all, int *pipe)
 	dup2(pipe[1], 1);
 	dup2(fd, 0);
 	close(fd);
-	if (execve(path, all->sp_cmd, envp) == -1)
+	if (execve(all->path, all->sp_cmd, envp) == -1)
 		perror("mku");
 }
 
 static void	child2(char **argv, char **envp, t_all *all, int *pipe)
 {
 	int		fd;
-	char	*path;
 
-	path = init_path(all, 0, all->sl_cmd2, all->cmd2);
-	if (path == NULL)
+	all->path2 = get_path(all, all->cmd2);
+	if (all->path2 == NULL)
 		error("command not found\n");
 	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd == -1)
@@ -87,7 +85,7 @@ static void	child2(char **argv, char **envp, t_all *all, int *pipe)
 	dup2(pipe[0], 0);
 	dup2(fd, 1);
 	close(fd);
-	if (execve(path, all->sp_cmd2, envp) == -1)
+	if (execve(all->path2, all->sp_cmd2, envp) == -1)
 		perror("mku");
 }
 
