@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"signal.h": "c",
+		"tree.h": "c",
+		"minishell.h": "c",
+		"stdlib.h": "c",
+		"ft_string.h": "c"
+	}
+}
