@@ -13,8 +13,6 @@
 #ifndef FT_SIGNAL_H
 # define FT_SIGNAL_H
 
-# define ECHOCTL 512
-
 void	new_line(int sig);
 void	new_promot(void);
 #endif
