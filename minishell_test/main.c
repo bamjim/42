@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:50:39 by mku               #+#    #+#             */
-/*   Updated: 2024/11/12 19:08:59 by mku              ###   ########.fr       */
+/*   Updated: 2024/11/18 20:09:54 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,28 @@
 #include <stdio.h>
 //#include "Tree/tree.h"
 #include <stdlib.h>
-//#include "minishell.h"
+#include "minishell.h"
 #include "List/list.h"
 #include "String/ft_string.h"
+#include "Tokenizer/tokenizer.h"
 
 t_envlist *get_envlist(char **envp);
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_envlist *envlist;
+	t_tokenlist *tokenlist;
+	t_stat	stat;
 
+	tokenlist = (t_tokenlist *)malloc(sizeof(t_tokenlist));
+	tokenlist->head = NULL;
+	tokenlist->tail = NULL;
 	envlist = get_envlist(envp);
-
-	char * line = "cmd1 || cmd2 && cmd3";
-
+	stat.envlist = envlist;
+	stat.tokenlist = tokenlist;
+	char * line = "cmd        a  |      ls -l    |cmd2        |      |       cmd3    |";
+	tokenizer(line, &stat);
+	print_list(stat.tokenlist);
 }
 
 t_envlist *get_envlist(char **envp)

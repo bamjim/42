@@ -6,12 +6,14 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 16:08:50 by seojang           #+#    #+#             */
-/*   Updated: 2024/11/15 16:36:16 by mku              ###   ########.fr       */
+/*   Updated: 2024/11/18 18:06:33 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ms_test.h"
 #include "./builtin/builtin.h"
+#include "./Signal/ft_signal.h"
+
 void	ft_paser_func(t_tokken_list **tokken, t_val *val, int *pipefd)
 {
 	ft_val_set(*tokken, val);
@@ -52,6 +54,7 @@ void	ft_paser_manager(t_tokken_list *tokken, char **envp, t_stat *stat)
 			pipefd[1] = -1;
 		}
 		ft_paser_func(&tokken, &val, pipefd);
+		sig_echo_ctl_on();
 		pid = fork();
 		if (pid < 0)
 			error("Fork error", 1);

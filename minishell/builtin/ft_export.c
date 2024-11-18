@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:45:40 by mku               #+#    #+#             */
-/*   Updated: 2024/11/15 19:17:16 by mku              ###   ########.fr       */
+/*   Updated: 2024/11/18 17:22:56 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	export(t_tokken_list *tokken, t_stat *stat)
 		print_env(stat->envlist);
 		return (COMPLETE);
 	}
-	
+	return (0);
 }
 
 int	check_grammer(t_tokken_list *tokken, t_grammer_list *g_list)

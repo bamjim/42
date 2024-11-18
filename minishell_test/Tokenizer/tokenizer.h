@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_signal.h                                        :+:      :+:    :+:   */
+/*   tokenizer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/17 16:52:07 by mku               #+#    #+#             */
-/*   Updated: 2024/11/18 17:21:30 by mku              ###   ########.fr       */
+/*   Created: 2024/11/18 19:05:57 by mku               #+#    #+#             */
+/*   Updated: 2024/11/18 19:11:32 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SIGNAL_H
-# define FT_SIGNAL_H
+#ifndef TOKENIZER_H
+# define TOKENIZER_H
 
-void	sig_echo_ctl_on(void);
-void	sig_echo_ctl_off(void);
+typedef struct s_stat t_stat;
+void	tokenizer(char *line, t_stat *stat);
+
 #endif

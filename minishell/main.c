@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 19:02:13 by seojang           #+#    #+#             */
-/*   Updated: 2024/11/17 18:18:51 by mku              ###   ########.fr       */
+/*   Updated: 2024/11/18 17:47:23 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 #include "./builtin/builtin.h"
 #include "./Signal/ft_signal.h"
 
-void	handler(int sig)
-{
-	if (sig != SIGINT)
-		return ;
-	write(1, "minishell>^C\n", 13);
-	rl_on_new_line();
-	rl_replace_line("", 1);
-	rl_redisplay();
-}
 
 void	get_envlist(char **envp, t_envlist **envlist)
 {
@@ -65,10 +56,9 @@ int main(int ac, char **av, char **envp)
 	line = NULL;
 	(void)ac;
 	(void)av;
-	//signal(SIGINT, new_line);
 	while (1)
 	{
-		new_promot();
+		sig_echo_ctl_off();
 		line = readline("minishell^~^ :");
 		if (!ft_strlen(line))
 			continue ;
@@ -81,19 +71,3 @@ int main(int ac, char **av, char **envp)
 	}
 	return (0);
 }
-
-//#include <stdio.h>
-//#include "ms_test.h"
-//int main(int argc, char ** argv, char ** envp)
-//{
-//	//t_envlist	*envlist;
-//	//envlist = NULL;
-//	//get_envlist(envp, &envlist);
-//	int index = 0;
-//	(void)argc;
-//	(void)argv;
-//	char *str = ft_double_qoute_check("\"hello world\"", &index, 0);
-//	printf("%s\n", str);
-//	//printf("hello");
-//	return (0);
-//}
