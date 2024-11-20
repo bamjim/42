@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:32:30 by mku               #+#    #+#             */
-/*   Updated: 2024/11/18 18:53:45 by mku              ###   ########.fr       */
+/*   Updated: 2024/11/19 17:20:29 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	new_prompt(int sig)
 	rl_replace_line("", 0);
 	rl_redisplay();
 }
-
 
 void	sig_echo_ctl_off(void)
 {

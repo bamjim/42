@@ -11,6 +11,8 @@
 # include <sys/wait.h>
 # include <signal.h>
 
+# define TRUE 1
+# define FALSE 0
 typedef struct s_flag
 {
 	int	pipe;

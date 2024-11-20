@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:15:10 by mku               #+#    #+#             */
-/*   Updated: 2024/11/15 16:42:22 by mku              ###   ########.fr       */
+/*   Updated: 2024/11/20 14:59:57 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	change_pwd(t_envlist *envlist, char *path)
 		{
 			temp = envlist->content;
 			envlist->content = ft_strjoin(ft_strdup("PWD="), path);
-			free(temp);
+			printf("dasdaasdsadsa\n");
+			printf("dasda\n");
 			return ;
 		}
 		envlist = envlist->next;

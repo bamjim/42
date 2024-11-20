@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:13:15 by seojang           #+#    #+#             */
-/*   Updated: 2024/11/15 17:28:51 by mku              ###   ########.fr       */
+/*   Updated: 2024/11/20 14:55:40 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,6 @@ void execute_cmd(t_tokken_list *tokken, char **envp, t_stat *stat)
 	char	**c_env;
 	int arg_count = 0;
 
-	if (change_directory(tokken, stat->envlist))
-		exit(0);
-	if (check_env(tokken, stat->envlist))
-		exit(0);
-	if (check_pwd(tokken, stat->envlist))
-		exit(0) ;
-	if (export(tokken, stat))
-		exit(0) ;
 	c_env = convert_env(stat->envlist);
 	if (!tokken)
 		error("Invalid command or environment", 1);

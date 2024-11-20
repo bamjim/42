@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 16:08:50 by seojang           #+#    #+#             */
-/*   Updated: 2024/11/18 18:06:33 by mku              ###   ########.fr       */
+/*   Updated: 2024/11/20 15:01:32 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ void	ft_paser_manager(t_tokken_list *tokken, char **envp, t_stat *stat)
 			ft_heredoc(&tokken, &val);
 		here_flag++;
 	}
+	if (change_directory(tokken, stat))
+		return ;
+	if (check_env(tokken, stat->envlist))
+		return ;
+	if (check_pwd(tokken, stat->envlist))
+		return ;
+	if (export(tokken, stat))
+		return ;
 	while (tokken)
 	{
 		if (ft_next_pipe(tokken))

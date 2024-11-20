@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 19:02:13 by seojang           #+#    #+#             */
-/*   Updated: 2024/11/18 17:47:23 by mku              ###   ########.fr       */
+/*   Updated: 2024/11/20 15:01:52 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "./builtin/builtin.h"
 #include "./Signal/ft_signal.h"
 
+void	loop_prompt(char *line ,char **envp, t_stat *stat);
 
 void	get_envlist(char **envp, t_envlist **envlist)
 {
@@ -22,7 +23,7 @@ void	get_envlist(char **envp, t_envlist **envlist)
 	i = 0;
 	while (envp[i] != NULL)
 	{
-		ft_lstadd_back(envlist, ft_lstnew(ft_strdup(envp[i])));
+			ft_lstadd_back(envlist, ft_lstnew(ft_strdup(envp[i])));
 		i++;
 	}
 }
@@ -56,7 +57,13 @@ int main(int ac, char **av, char **envp)
 	line = NULL;
 	(void)ac;
 	(void)av;
-	while (1)
+	loop_prompt(line, envp, &stat);
+	return (0);
+}
+
+void	loop_prompt(char *line ,char **envp, t_stat *stat)
+{
+	while (TRUE)
 	{
 		sig_echo_ctl_off();
 		line = readline("minishell^~^ :");
@@ -64,10 +71,9 @@ int main(int ac, char **av, char **envp)
 			continue ;
 		if (line)
 		{
-			ft_tokenizer(line, envp, &stat);
+			ft_tokenizer(line, envp, stat);
 			free(line);
 			line = NULL;
 		}
 	}
-	return (0);
 }
