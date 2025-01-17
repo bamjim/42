@@ -6,64 +6,31 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:40:14 by mku               #+#    #+#             */
-/*   Updated: 2025/01/14 16:02:40 by mku              ###   ########.fr       */
+/*   Updated: 2025/01/17 16:34:11 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Philo.h"
 
-void *ph_thread(void *thread);
-void	get_fork(t_thread *thread, t_arg *arg);
 void init_arg(t_arg *arg, t_thread **thread, char **argv);
 void	init_thread(t_arg *arg, t_thread **thread);
 
 int main(int argc, char **argv)
 {
-	if (argc != 5 && argc != 6)
-		print_error("wrong arg");
 	t_arg arg;
 	t_thread *thread;
 
+	if (argc != 5 && argc != 6)
+		print_error("wrong arg");
 	init_arg(&arg, &thread, argv);
 	init_thread(&arg, &thread);
-	for (int i = 0; i < arg.philo_count; i ++)
-		pthread_create(thread[i].thread, NULL, ph_thread, (void *)&thread[i]);
-	for (int i = 0 ; i < arg.philo_count; i ++)
-		pthread_join(*(thread[i].thread), NULL);
+	create_thread(thread, &arg);
+	wait_thread(thread, &arg);
 	return (0);
 
 }
-void *ph_thread(void *thread)
-{
-	t_thread *_thread;
 
-	_thread = (t_thread *)thread;
-	if (_thread->id % 2 == 0)
-		usleep(100);
-	while (1)
-	{
-		get_fork(_thread, _thread->arg);
-		printf("[%d] thinking\n",_thread->id);
-		usleep(10000);
-	}
-}
 
-void	get_fork(t_thread *thread, t_arg *arg)
-{
-	pthread_mutex_lock(&(arg->fork[thread->left]));
-	if (arg->philo_count != 1)
-	{
-		printf("[%d] get fork\n",thread->id);
-		pthread_mutex_lock(&(arg->fork[thread->right]));
-		printf("[%d] get fork\n",thread->id);
-		printf("[%d] eat\n",thread->id);
-		usleep(arg->time_to_eat);
-		printf("[%d]sleep\n", thread->id);
-		usleep(arg->time_to_sleep);
-		pthread_mutex_unlock(&(arg->fork[thread->right]));
-	}
-	pthread_mutex_unlock(&(arg->fork[thread->left]));
-}
 
 void init_arg(t_arg *arg, t_thread **thread, char **argv)
 {

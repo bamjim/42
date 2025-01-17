@@ -6,11 +6,12 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:59:28 by mku               #+#    #+#             */
-/*   Updated: 2025/01/14 13:08:57 by mku              ###   ########.fr       */
+/*   Updated: 2025/01/17 14:54:00 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Philo.h"
+#include <sys/time.h>
 
 void print_error(char *content)
 {
@@ -18,6 +19,15 @@ void print_error(char *content)
 	exit(1);
 }
 
+int	gettime(void)
+{
+	struct	timeval time;
+	int		t;
+
+	gettimeofday(&time, NULL);
+	t = time.tv_sec * 1000 + time.tv_usec / 1000;
+	return (t);
+}
 int	ft_atoi(const char *nptr)
 {
 	int	i;
