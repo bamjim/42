@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:46:49 by mku               #+#    #+#             */
-/*   Updated: 2025/01/17 16:14:20 by mku              ###   ########.fr       */
+/*   Updated: 2025/01/19 19:03:18 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,33 +33,31 @@ static void	use_fork(t_arg *arg, t_thread *thread)
 
 	pthread_mutex_lock(&(arg->fork[thread->left]));
 	time = gettime();
-	printf("%d %d has taken a fork\n",time - thread->birth_time, thread->id);
+	printf("%d %d has taken a fork\n",time - thread->birth_time, thread->id + 1);
 	pthread_mutex_lock(&(arg->fork[thread->right]));
 	time = gettime();
-	printf("%d %d has taken a fork\n",time - thread->birth_time, thread->id);
+	printf("%d %d has taken a fork\n",time - thread->birth_time, thread->id + 1);
 }
 
 static void	done_use_fork(t_arg *arg, t_thread *thread)
 {
 	pthread_mutex_unlock(&(arg->fork[thread->right]));
 	pthread_mutex_unlock(&(arg->fork[thread->left]));
-	usleep(200);
+	usleep(100);
 }
 
 static void	eat(t_arg *arg, t_thread *thread)
 {
-	int	time;
-
-	time = gettime();
-	printf("%d %d is eating\n",time - thread->birth_time, thread->id);
+	thread->last_eat = gettime();
+	printf("%d %d is eating\n",thread->last_eat - thread->birth_time, thread->id + 1);
+	thread->eat_count++;
 	usleep(arg->time_to_eat);
 }
 
 static void	p_sleep(t_arg *arg, t_thread *thread)
 {
 	int	time;
-
 	time = gettime();
-	printf("%d %d is sleeping\n",time - thread->birth_time, thread->id);
+	printf("%d %d is sleeping\n",time - thread->birth_time, thread->id + 1);
 	usleep(arg->time_to_sleep);
 }

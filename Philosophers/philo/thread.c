@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:27:04 by mku               #+#    #+#             */
-/*   Updated: 2025/01/17 16:33:11 by mku              ###   ########.fr       */
+/*   Updated: 2025/01/19 19:11:46 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,21 @@ void	wait_thread(t_thread *thread, t_arg *arg)
 static void *ph_thread(void *thread)
 {
 	t_thread *_thread;
+	int			time;
 
 	_thread = (t_thread *)thread;
 	_thread->birth_time = gettime();
-	if (_thread->id % 2 == 0)
-		usleep(150);
+	if ((_thread->id + 1) % 2 == 0)
+	{
+		time = gettime();
+		printf("%d %d is thinking\n",time - _thread->birth_time, _thread->id + 1);
+		usleep(250);
+	}
 	while (1)
 	{
 		fork_eat_sleep(_thread, _thread->arg);
-		int time = gettime();
-		printf("%d %d is thinking\n",time - _thread->birth_time, _thread->id);
+		time = gettime();
+		printf("%d %d is thinking\n",time - _thread->birth_time, _thread->id + 1);
 		usleep(100);
 	}
 }

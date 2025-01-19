@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:01:19 by mku               #+#    #+#             */
-/*   Updated: 2025/01/17 16:33:43 by mku              ###   ########.fr       */
+/*   Updated: 2025/01/19 17:41:21 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_thread
 	int		left;
 	int		right;
 	int		birth_time;
+	int		last_eat;
 }	t_thread;
 //thread.c
 void	create_thread(t_thread *thread, t_arg *arg);
@@ -46,4 +47,5 @@ void	fork_eat_sleep(t_thread *thread, t_arg *arg);
 void	print_error(char *content);
 int		ft_atoi(const char *nptr);
 int		gettime(void);
+void	ft_sleep(int wait_time, int start_time);
 #endif

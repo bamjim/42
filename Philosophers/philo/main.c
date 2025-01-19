@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:40:14 by mku               #+#    #+#             */
-/*   Updated: 2025/01/17 16:34:11 by mku              ###   ########.fr       */
+/*   Updated: 2025/01/19 20:18:09 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int main(int argc, char **argv)
 	create_thread(thread, &arg);
 	wait_thread(thread, &arg);
 	return (0);
-
 }
 
 
@@ -67,6 +66,7 @@ void	init_thread(t_arg *arg, t_thread **thread)
 	while (i < arg->philo_count)
 	{
 		(*thread)[i].arg = arg;
+		(*thread)[i].last_eat = -1;
 		(*thread)[i].id = i;
 		(*thread)[i].eat_count = 0;
 		(*thread)[i].left = i;

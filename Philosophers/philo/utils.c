@@ -6,7 +6,7 @@
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:59:28 by mku               #+#    #+#             */
-/*   Updated: 2025/01/17 14:54:00 by mku              ###   ########.fr       */
+/*   Updated: 2025/01/19 18:46:20 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,17 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (result * sign);
+}
+
+void	ft_sleep(int wait_time, int start_time)
+{
+	int	now_time;
+	int i;
+
+	i = 0;
+	int start = gettime();
+	while (gettime() - start_time < wait_time)
+	{
+		usleep(10);
+	}
 }
