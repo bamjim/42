@@ -1,11 +1,14 @@
 NAME	= philo
 CC		= cc
-CFLAG	= -g
+CFLAG	=  -Wextra -Werror -Wall
 
-SRCS	= main.c\
-		  thread.c\
-		  thread_philo.c\
-		  utils.c
+SRCS	= 	main.c\
+			init.c\
+			utils.c\
+			main_thread.c\
+			philo_thread.c\
+			philo_thread2.c\
+			shared_resource.c
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -24,5 +27,6 @@ fclean : clean
 	rm -f $(NAME)
 
 re : fclean all
+
 
 .PHONY : all clean fclean re

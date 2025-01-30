@@ -5,29 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mku <mku@student.42gyeongsan.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 11:59:28 by mku               #+#    #+#             */
-/*   Updated: 2025/01/19 18:46:20 by mku              ###   ########.fr       */
+/*   Created: 2025/01/22 14:02:45 by mku               #+#    #+#             */
+/*   Updated: 2025/01/25 17:58:42 by mku              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Philo.h"
-#include <sys/time.h>
+#include "philo.h"
 
-void print_error(char *content)
+void	print_error(char *content)
 {
-	printf("%s\n",content);
+	printf("%s\n", content);
 	exit(1);
 }
 
-int	gettime(void)
-{
-	struct	timeval time;
-	int		t;
-
-	gettimeofday(&time, NULL);
-	t = time.tv_sec * 1000 + time.tv_usec / 1000;
-	return (t);
-}
 int	ft_atoi(const char *nptr)
 {
 	int	i;
@@ -53,15 +43,24 @@ int	ft_atoi(const char *nptr)
 	return (result * sign);
 }
 
-void	ft_sleep(int wait_time, int start_time)
+int	gettime(void)
 {
-	int	now_time;
-	int i;
+	struct timeval	t;
 
-	i = 0;
-	int start = gettime();
-	while (gettime() - start_time < wait_time)
-	{
-		usleep(10);
-	}
+	gettimeofday(&t, NULL);
+	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
+}
+
+int	convert_ms(int time, int birth_time)
+{
+	return (time - birth_time);
+}
+
+void	ft_usleep(int sleep_time)
+{
+	int	start;
+
+	start = gettime();
+	while (sleep_time > gettime() - start)
+		usleep(100);
 }
